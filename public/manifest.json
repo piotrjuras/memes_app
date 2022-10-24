@@ -1,0 +1,14 @@
+{
+  "short_name": "Funapp",
+  "name": "Memes app",
+  "icons": [  
+    {
+      "src": "./favicon/favicon.ico",
+      "sizes": "72x72"
+    }
+  ],
+  "start_url": "./",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff"
+}

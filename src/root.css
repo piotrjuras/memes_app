@@ -1,0 +1,33 @@
+@font-face {
+    font-family: Trispace-medium;
+    src: url(./static/Trispace-Medium.ttf);
+}
+
+@font-face {
+    font-family: Trispace-light;
+    src: url(./static/Trispace-Light.ttf);
+}
+
+body{
+    margin: 0;
+    padding: 0;
+    font-family: Trispace-light;
+}
+
+p{
+    margin: 5px;
+}
+
+:root{
+    --black-background: #000000;
+    --white: #FFFFFF;
+}
+
+.swiper{
+    height: 100%;
+}
+
+ul > li{
+    margin-top: 10px;
+}
+  
