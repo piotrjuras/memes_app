@@ -5,9 +5,11 @@ import useStore from '../../hooks/useStore';
 import Helmet from 'react-helmet';
 
 import { Swiper, SwiperSlide } from 'swiper/react';
-import 'swiper/css';
 import { useNavigate } from 'react-router-dom';
 import useLogin from '../../hooks/useLogin';
+import Navigation from '../meme/Navigation';
+
+import 'swiper/css';
 
 const ContentView = ({ favorites }) => {
     const { store, updateStore } = useStore();
@@ -50,16 +52,7 @@ const ContentView = ({ favorites }) => {
             <Swiper
                 direction={"vertical"}
                 onSlideChange={(event) => slideChanged(event)}
-                onSwiper={(swiper) => {
-                    setSwiper(swiper);
-                    window.addEventListener('keydown', (e) => {
-                        if(e.keyCode === 40){
-                            swiper.slideNext();
-                        } else if(e.keyCode === 38){
-                            swiper.slidePrev();
-                        }
-                    });
-                }}
+                onSwiper={(swiper) => setSwiper(swiper)}
                 onClick={() => updateStore('menuOpened', false)}
             >
                 {memesList.map((meme, index) =>
@@ -68,6 +61,11 @@ const ContentView = ({ favorites }) => {
                     </SwiperSlide>
                 )}
             </Swiper>
+            {swiper && store.navigationVisible ? <Navigation
+                            nextSlide={() => swiper.slideNext()}
+                            prevSlide={() => swiper.slidePrev()}
+                        />
+            : null}
     </> )
 }
 

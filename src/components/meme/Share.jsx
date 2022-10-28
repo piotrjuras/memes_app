@@ -46,7 +46,7 @@ const Share = ({ meme }) => {
 
 
     return (
-        <FontAwesomeIcon icon={faShare} onClick={() => copy()} />
+        <FontAwesomeIcon icon={faShare} className="pointer" onClick={() => copy()} />
     )
 }
 

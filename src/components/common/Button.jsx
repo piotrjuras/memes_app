@@ -21,6 +21,7 @@ const StyledButton = styled.button`
     padding: 10px 15px;
     font-family: Trispace-medium;
     margin: 2px;
+    cursor: pointer;
     svg{
         margin-right: 8px;
     }

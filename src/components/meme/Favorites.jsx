@@ -28,9 +28,9 @@ const Favorites = ({ meme }) => {
 
         const response = await UserService.put(store.user.username, store.user);
         if(response.data === 'updated'){
-            setNotification({ type: 'success', message: 'saved'});
+            setNotification({ type: 'success', message: 'saved' });
         } else {
-            setNotification({ type: 'error', message: 'Uops, something went wrong!'});
+            setNotification({ type: 'error', message: 'Uops, something went wrong!' });
         }
         updateFavorites();
     }
@@ -59,12 +59,12 @@ const Favorites = ({ meme }) => {
         if(store.user) updateFavorites();
     },[store.user]) // eslint-disable-line
 
-    return(
-         !isFavorite ? 
-            <FontAwesomeIcon icon={emptyHeart} className="favorite" onClick={() => addToFavorites(meme)} />
-        :
-            <FontAwesomeIcon icon={solidHeart} className="favorite" onClick={() => removefromFavorites(meme)} />
-    )
+
+    return <FontAwesomeIcon 
+                icon={isFavorite ? solidHeart : emptyHeart}
+                className="favorite pointer"
+                onClick={(e) => isFavorite ? removefromFavorites(meme) : addToFavorites(meme)}
+            />
 }
 
 export default Favorites;

@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 const StyledInfo = styled.footer`
     position: absolute;
@@ -9,6 +9,11 @@ const StyledInfo = styled.footer`
     box-sizing: border-box;
     background: rgb(255,255,255);
     background: linear-gradient(180deg, rgba(255,255,255,0) 0%, rgba(0,0,0,0.6) 40%);
+    opacity: 0;
+    transition: opacity .1s ease-in-out;
+    ${props => props.visible && css`
+        opacity: 1;
+    `}
 
     display: flex;
     flex-direction: row;
