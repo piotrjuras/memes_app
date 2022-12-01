@@ -6,7 +6,7 @@ export default class ContentService{
     static async fetchContent(sub, count){
 
         try{
-            const response = await axios.get(`https://meme-api.herokuapp.com/gimme/${count}`)
+            const response = await axios.get(`https://meme-api.com/gimme/${count}`)
 
             return response.data;
         }

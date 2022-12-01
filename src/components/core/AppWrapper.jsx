@@ -6,7 +6,7 @@ const AppWrapper = ({ children }) => {
     const { store } = useStore();
 
     useEffect(() => {
-        console.log(store);
+        // console.log(store);
     },[store])
 
     return <div >{ children }</div>

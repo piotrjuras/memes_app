@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import useScreenHeight from '../../hooks/useScreenHeight';
 import useStore from '../../hooks/useStore';
 import { ModalContext } from '../../Root';
@@ -13,14 +13,14 @@ import Login from './Login';
 import Register from './Register';
 import AdView from './AdView';
 import Pin from './Pin';
+import PinChange from './PinChange';
 
-const MainView = ({ register, login, pin, favorites, share ,ad }) => {
+const MainView = ({ register, login, pin, pinChange, favorites, share, ad }) => {
 
     const { vh } = useScreenHeight();
     const { modal, setModal } = useContext(ModalContext);
     const { store } = useStore();
     const navigate = useNavigate();
-    const params = useParams();
 
     useEffect(() => {
         if(store.user && (register || login)) navigate('/');
@@ -33,14 +33,8 @@ const MainView = ({ register, login, pin, favorites, share ,ad }) => {
         if(pin){
             setModal('pin')
         }
-        if(share){
-            setModal('share')
-        }
-        if(ad){
-            setModal('ad')
-        }
-        if(!register && !login && !pin && !share && !ad) setModal(null);
-    },[store.user, register, login, pin, share, ad]) // eslint-disable-line
+        if(!register && !login && !pin) setModal(null);
+    },[store.user, register, login, pin]) // eslint-disable-line
 
     return (
         <StyledMainView style={{ height: `${vh}px` }}>
@@ -57,16 +51,21 @@ const MainView = ({ register, login, pin, favorites, share ,ad }) => {
                 </Modal>
             : null }
             { modal === 'pin' ? 
-                <Modal onCloseEvent={() => navigate('/')}>
-                    <Pin change={params.change} />
+                <Modal onCloseEvent={() => navigate('/')} disabledCloseButton>
+                    <Pin />
                 </Modal>
             : null }
-            { modal === 'share' ? 
+            { pinChange ? 
+                <Modal onCloseEvent={() => navigate('/')}>
+                    <PinChange />
+                </Modal>
+            : null }
+            { share ? 
                 <Modal onCloseEvent={() => navigate('/')}>
                     <Share />
                 </Modal>
             : null }
-            { modal === 'ad' ? 
+            { ad ? 
                 <Modal onCloseEvent={() => navigate('/')}>
                     <AdView />
                 </Modal>

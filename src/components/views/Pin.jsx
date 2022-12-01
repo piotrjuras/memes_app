@@ -6,9 +6,8 @@ import Input from '../common/Input';
 import useStore from '../../hooks/useStore';
 import { NotificationContext } from '../../Root';
 import { useNavigate } from 'react-router-dom';
-import UserService from '../../services/UserService';
 
-const Pin = ({ change }) => {
+const Pin = () => {
 
     const pin = useRef();
     const { store, updateStore } = useStore();
@@ -28,17 +27,7 @@ const Pin = ({ change }) => {
 
     const submitted = async (e) => {
         e.preventDefault();
-        if(change){
-            user.pin = pin.current.value;
-            const response = await UserService.put(user.username, user);
-            if(response.data === 'updated'){
-                setNotification({ type: 'success', message: 'changed'});
-            } else {
-                setNotification({ type: 'error', message: 'Uops! something went wrong'});
 
-            }
-          
-        }
         if(user.pin === pin.current.value){
             window.localStorage.setItem('authenticated', true);
             updateStore('user', user);
@@ -51,10 +40,10 @@ const Pin = ({ change }) => {
     return(
         <Form submitLabel="Unlock 🔓" submitHandler={(e) => submitted(e)}>
             <h2>
-                {change ? 'Change your pin' : 'Provide Pin to your account'}
+                Provide Pin to your account
             </h2>
             <p>just an extra security 🔐 layer</p>
-            <Input name="nick" refName={pin} label={change ? 'Change' : 'Unlock your account'} error={validationError} />
+            <Input name="nick" refName={pin} label="Unlock your account" error={validationError} />
         </Form>
     )
 }

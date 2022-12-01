@@ -30,8 +30,8 @@ const routes = [
     },
     {
         name: 'pinChange',
-        path: '/auth/login/pin/:change',
-        component: <MainView pin />
+        path: '/auth/login/pin/change',
+        component: <MainView pinChange />
     },
     {
         name: 'share',

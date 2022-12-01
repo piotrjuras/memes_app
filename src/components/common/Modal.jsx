@@ -5,16 +5,16 @@ import styled from 'styled-components';
 
 import { ModalContext } from '../../Root';
 
-const Modal = ({ children, onCloseEvent }) => {
+const Modal = ({ children, onCloseEvent, disabledCloseButton = false }) => {
 
     const { setModal } = useContext(ModalContext);
 
     return <StyledModal>
-            <FontAwesomeIcon icon={faXmark} onClick={() => {
+            { !disabledCloseButton ? <FontAwesomeIcon icon={faXmark} onClick={() => {
                 setModal(null);
                 onCloseEvent();
                 }}
-            />
+            /> : null }
             { children }
         </StyledModal>
 }
